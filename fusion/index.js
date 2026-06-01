@@ -1,5 +1,5 @@
 /*--------------------
-// FusionDsp plugin for volumio 3. By balbuze April 2026
+// FusionDsp plugin for volumio 3. By balbuze May 2026
 Camilladsp v4.1.0
 contribution : Nerd, Paolo Sabatino, squadgazzz
 Multi Dsp features
@@ -582,14 +582,19 @@ function addPeqButtons(self, uiconf, ncontent) {
     });
   }
 
-  buttons.push({
-    id: 'resetpeq',
-    element: 'button',
-    label: self.commandRouter.getI18nString('RESET_PEQ'),
-    doc: self.commandRouter.getI18nString('RESET_PEQ_DOC'),
-    onClick: { type: 'plugin', endpoint: 'audio_interface/fusiondsp', method: 'resetPeqToSaved', data: [] },
-    visibleIf: { field: 'showeq', value: true }
-  }, {
+  const IPaddress = self.config.get('address');
+  const showPeqCurveButton = {
+
+      id: 'showpeqcurve',
+      element: 'button',
+      label: self.commandRouter.getI18nString('SHOW_PEQ_CURVE'),
+      doc: self.commandRouter.getI18nString('SHOW_PEQ_CURVE_DOC'),
+      onClick: { type: 'openUrl', url: `http://${IPaddress}:10015` }
+
+      // visibleIf: { field: 'showeq', value: true }
+    };
+  /*    }
+  const showPeqCurveButton = {
     id: 'showpeqcurve',
     element: 'button',
     label: self.commandRouter.getI18nString('SHOW_PEQ_CURVE'),
@@ -599,11 +604,23 @@ function addPeqButtons(self, uiconf, ncontent) {
       endpoint: 'audio_interface/fusiondsp',
       method: 'showPeqGraph',
       data: []
-    },
-    visibleIf: { field: 'showeq', value: true }
-  });
+    }
 
-  uiconf.sections[1].content.push(...buttons);
+
+    //  visibleIf: { field: 'showeq', value: true }
+  };
+*/
+  buttons.push({
+    id: 'resetpeq',
+    element: 'button',
+    label: self.commandRouter.getI18nString('RESET_PEQ'),
+    doc: self.commandRouter.getI18nString('RESET_PEQ_DOC'),
+    onClick: { type: 'plugin', endpoint: 'audio_interface/fusiondsp', method: 'resetPeqToSaved', data: [] },
+    visibleIf: { field: 'showeq', value: true }
+  }, showPeqCurveButton);
+
+  uiconf.sections[1].content.push(...buttons.filter(button => button.id !== 'showpeqcurve'));
+  uiconf.sections[1].content.unshift(showPeqCurveButton);
 }
 
 function configureEq15Section(self, uiconf, selectedsp) {
@@ -622,6 +639,8 @@ function configureEq15Section(self, uiconf, selectedsp) {
     const geq15 = self.config.get(eq).split(',');
     const muteKey = eq === 'x2geq15' ? 'x2geq15mute' : 'geq15mute';
     const mutedBands = (self.config.get(muteKey) || '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0').split(',');
+    const IPaddress = self.config.get('address');
+
     const bars = eq15range.map((label, idx) => ({
       min: -10,
       max: 10,
@@ -632,6 +651,15 @@ function configureEq15Section(self, uiconf, selectedsp) {
       muted: mutedBands[idx] === '1'
     }));
 
+    uiconf.sections[1].content.push({
+      id: 'showpeqcurve',
+      element: 'button',
+      label: self.commandRouter.getI18nString('SHOW_PEQ_CURVE'),
+      doc: self.commandRouter.getI18nString('SHOW_PEQ_CURVE_DOC'),
+      onClick: { type: 'openUrl', url: `http://${IPaddress}:10015` }
+
+      // visibleIf: { field: 'showeq', value: true }
+    });
     uiconf.sections[1].content.push({
       id: eq,
       element: 'equalizer',
@@ -652,20 +680,21 @@ function configureEq15Section(self, uiconf, selectedsp) {
     onClick: { type: 'plugin', endpoint: 'audio_interface/fusiondsp', method: 'reseteq', data: [] },
     visibleIf: { field: 'showeq', value: true }
   });
-
-  uiconf.sections[1].content.push({
-    id: 'showpeqcurve',
-    element: 'button',
-    label: self.commandRouter.getI18nString('SHOW_PEQ_CURVE'),
-    doc: self.commandRouter.getI18nString('SHOW_PEQ_CURVE_DOC'),
-    onClick: {
-      type: 'plugin',
-      endpoint: 'audio_interface/fusiondsp',
-      method: 'showPeqGraph',
-      data: []
-    },
-    visibleIf: { field: 'showeq', value: true }
-  });
+  /*
+    uiconf.sections[1].content.push({
+      id: 'showpeqcurve',
+      element: 'button',
+      label: self.commandRouter.getI18nString('SHOW_PEQ_CURVE'),
+      doc: self.commandRouter.getI18nString('SHOW_PEQ_CURVE_DOC'),
+      onClick: {
+        type: 'plugin',
+        endpoint: 'audio_interface/fusiondsp',
+        method: 'showPeqGraph',
+        data: []
+      },
+      visibleIf: { field: 'showeq', value: true }
+    });
+    */
 }
 
 function configureEq3Section(self, uiconf) {
@@ -1157,21 +1186,21 @@ FusionDsp.prototype.choosedsp = function (data) {
     self.config.set('moresettings', false)
 
   } else if (selectedsp === 'EQ15') {
-    self.config.set("showeq", true)
+    self.config.set("showeq", false)
 
     self.config.set('nbreq', 15)
     self.config.set('mergedeq', self.config.get('savedmergedgeq15'))
     self.config.set('geq15', self.config.get('savedgeq15'))
 
   } else if (selectedsp === '2XEQ15') {
-    self.config.set("showeq", true)
+    self.config.set("showeq", false)
     self.config.set('nbreq', 30)
     self.config.set('geq15', self.config.get('savedx2geq15l'))
     self.config.set('mergedeq', self.config.get('savedmergedeqx2geq15'))
     self.config.set('x2geq15', self.config.get('savedx2geq15r'))
 
   } else if (selectedsp === 'PEQ') {
-    self.config.set("showeq", true)
+    self.config.set("showeq", false)
     self.config.set('nbreq', self.config.get('savednbreq'))
     self.config.set('mergedeq', self.config.get('savedmergedeq'))
 
