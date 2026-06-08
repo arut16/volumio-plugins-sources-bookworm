@@ -1022,6 +1022,7 @@ ControllerStylishPlayer.prototype.getUIConfig = function () {
       __dirname + "/UIConfig.json",
     )
     .then(function (uiconf) {
+      try {
       // Build lookup helpers so we never access sections or fields by index.
       var sec = {};
       uiconf.sections.forEach(function (s) { sec[s.id] = s; });
@@ -1254,9 +1255,23 @@ ControllerStylishPlayer.prototype.getUIConfig = function () {
       }
 
       defer.resolve(uiconf);
+      } catch (syncErr) {
+        self.logger.error('Stylish Player getUIConfig sync error: ' + (syncErr && syncErr.stack ? syncErr.stack : String(syncErr)));
+        defer.reject(syncErr);
+      }
     })
     .fail(function (err) {
-      self.logger.error('Stylish Player getUIConfig failed: ' + (err && err.message ? err.message : err));
+      var msg;
+      if (err == null) {
+        msg = 'rejected with ' + err + ' (i18nJson may have failed to parse UIConfig.json or a language file)';
+      } else if (err instanceof Error) {
+        msg = err.stack || err.message;
+      } else if (typeof err === 'string') {
+        msg = err;
+      } else {
+        try { msg = JSON.stringify(err, Object.getOwnPropertyNames(err)); } catch (e) { msg = String(err); }
+      }
+      self.logger.error('Stylish Player getUIConfig failed: ' + msg);
       defer.reject(err || new Error('getUIConfig failed'));
     });
 
