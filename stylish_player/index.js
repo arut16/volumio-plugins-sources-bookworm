@@ -1025,9 +1025,17 @@ ControllerStylishPlayer.prototype.getUIConfig = function () {
       // Build lookup helpers so we never access sections or fields by index.
       var sec = {};
       uiconf.sections.forEach(function (s) { sec[s.id] = s; });
+      // Returns the field object, or a no-op proxy so callers can safely do
+      // field(...).value = x without throwing when a field is missing.
+      var _noop = {};
       function field(section, fieldId) {
         var s = sec[section];
-        return s && s.content && s.content.find(function (c) { return c.id === fieldId; });
+        var f = s && s.content && s.content.find(function (c) { return c.id === fieldId; });
+        if (!f) {
+          self.logger.warn('Stylish Player getUIConfig: unknown field ' + section + '.' + fieldId);
+          return _noop;
+        }
+        return f;
       }
       function setSelect(section, fieldId, configKey, defaultVal) {
         var f = field(section, fieldId);
@@ -1247,8 +1255,9 @@ ControllerStylishPlayer.prototype.getUIConfig = function () {
 
       defer.resolve(uiconf);
     })
-    .fail(function () {
-      defer.reject(new Error());
+    .fail(function (err) {
+      self.logger.error('Stylish Player getUIConfig failed: ' + (err && err.message ? err.message : err));
+      defer.reject(err || new Error('getUIConfig failed'));
     });
 
   return defer.promise;
