@@ -1427,6 +1427,8 @@ ControllerStylishPlayer.prototype.configSaveColors = function (data) {
   var fields = ["backgroundColor", "trackColor", "artistColor", "albumColor", "streamInfoColor", "buttonColor", "buttonBgColor", "barTrackColor", "barTextColor", "iconBtnColor"];
 
   for (var i = 0; i < fields.length; i++) {
+    // Skip fields not present in submitted data (e.g. older client versions)
+    if (!Object.prototype.hasOwnProperty.call(data, fields[i])) continue;
     var val = (data[fields[i]] || "").toString().trim();
     if (val && !hexPattern.test(val)) {
       self.commandRouter.pushToastMessage("error", "Stylish Player", fields[i] + " must be a valid hex code (e.g. #1a2b3c).");
