@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Voortgangsbalk – Google lettertype",
   "PROGRESS_FONT_NAME_DESC": "Aangepast Google lettertype van https://fonts.google.com. Voorbeeld: Nabla, Atomic Age. Leeg laten voor de standaard van het thema.",
   "VOLUME_FONT_NAME": "Volumelabel – Google lettertype",
-  "VOLUME_FONT_NAME_DESC": "Aangepast Google lettertype van https://fonts.google.com. Voorbeeld: Nabla, Atomic Age. Leeg laten voor de standaard van het thema."
+  "VOLUME_FONT_NAME_DESC": "Aangepast Google lettertype van https://fonts.google.com. Voorbeeld: Nabla, Atomic Age. Leeg laten voor de standaard van het thema.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Смуга прогресу – шрифт Google",
   "PROGRESS_FONT_NAME_DESC": "Власний шрифт Google з https://fonts.google.com. Приклад: Nabla, Atomic Age. Залиште порожнім для теми за замовчуванням.",
   "VOLUME_FONT_NAME": "Мітка гучності – шрифт Google",
-  "VOLUME_FONT_NAME_DESC": "Власний шрифт Google з https://fonts.google.com. Приклад: Nabla, Atomic Age. Залиште порожнім для теми за замовчуванням."
+  "VOLUME_FONT_NAME_DESC": "Власний шрифт Google з https://fonts.google.com. Приклад: Nabla, Atomic Age. Залиште порожнім для теми за замовчуванням.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

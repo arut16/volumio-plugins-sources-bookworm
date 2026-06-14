@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "進度條 – Google字型",
   "PROGRESS_FONT_NAME_DESC": "從 https://fonts.google.com 取得 Google 字型。範例：Nabla、Atomic Age。留空使用主題預設值。",
   "VOLUME_FONT_NAME": "音量標籤 – Google字型",
-  "VOLUME_FONT_NAME_DESC": "從 https://fonts.google.com 取得 Google 字型。範例：Nabla、Atomic Age。留空使用主題預設值。"
+  "VOLUME_FONT_NAME_DESC": "從 https://fonts.google.com 取得 Google 字型。範例：Nabla、Atomic Age。留空使用主題預設值。",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

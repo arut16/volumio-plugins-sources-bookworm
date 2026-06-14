@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Edistymispalkki – Google-fontti",
   "PROGRESS_FONT_NAME_DESC": "Mukautettu Google-fontti osoitteesta https://fonts.google.com. Esimerkki: Nabla, Atomic Age. Jätä tyhjäksi teeman oletusarvolle.",
   "VOLUME_FONT_NAME": "Äänenvoimakkuuden nimi – Google-fontti",
-  "VOLUME_FONT_NAME_DESC": "Mukautettu Google-fontti osoitteesta https://fonts.google.com. Esimerkki: Nabla, Atomic Age. Jätä tyhjäksi teeman oletusarvolle."
+  "VOLUME_FONT_NAME_DESC": "Mukautettu Google-fontti osoitteesta https://fonts.google.com. Esimerkki: Nabla, Atomic Age. Jätä tyhjäksi teeman oletusarvolle.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

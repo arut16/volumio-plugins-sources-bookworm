@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "プログレスバー – Googleフォント",
   "PROGRESS_FONT_NAME_DESC": "https://fonts.google.com からカスタムGoogleフォントを取得。例：Nabla、Atomic Age。空白のままにするとテーマのデフォルトを使用します。",
   "VOLUME_FONT_NAME": "音量ラベル – Googleフォント",
-  "VOLUME_FONT_NAME_DESC": "https://fonts.google.com からカスタムGoogleフォントを取得。例：Nabla、Atomic Age。空白のままにするとテーマのデフォルトを使用します。"
+  "VOLUME_FONT_NAME_DESC": "https://fonts.google.com からカスタムGoogleフォントを取得。例：Nabla、Atomic Age。空白のままにするとテーマのデフォルトを使用します。",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

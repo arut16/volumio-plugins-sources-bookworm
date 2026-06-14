@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Fremdriftslinje – Google-skrifttype",
   "PROGRESS_FONT_NAME_DESC": "Tilpasset Google-skrifttype fra https://fonts.google.com. Eksempel: Nabla, Atomic Age. La stå tomt for temastandarden.",
   "VOLUME_FONT_NAME": "Volumetikett – Google-skrifttype",
-  "VOLUME_FONT_NAME_DESC": "Tilpasset Google-skrifttype fra https://fonts.google.com. Eksempel: Nabla, Atomic Age. La stå tomt for temastandarden."
+  "VOLUME_FONT_NAME_DESC": "Tilpasset Google-skrifttype fra https://fonts.google.com. Eksempel: Nabla, Atomic Age. La stå tomt for temastandarden.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

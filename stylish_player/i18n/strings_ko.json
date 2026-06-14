@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "진행 표시줄 – Google 글꼴",
   "PROGRESS_FONT_NAME_DESC": "https://fonts.google.com에서 Google 글꼴을 가져옵니다. 예: Nabla, Atomic Age. 비워 두면 테마 기본값을 사용합니다.",
   "VOLUME_FONT_NAME": "볼륨 레이블 – Google 글꼴",
-  "VOLUME_FONT_NAME_DESC": "https://fonts.google.com에서 Google 글꼴을 가져옵니다. 예: Nabla, Atomic Age. 비워 두면 테마 기본값을 사용합니다."
+  "VOLUME_FONT_NAME_DESC": "https://fonts.google.com에서 Google 글꼴을 가져옵니다. 예: Nabla, Atomic Age. 비워 두면 테마 기본값을 사용합니다.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

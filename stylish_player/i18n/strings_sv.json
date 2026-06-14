@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Förloppsindikator – Google teckensnitt",
   "PROGRESS_FONT_NAME_DESC": "Anpassat Google-teckensnitt från https://fonts.google.com. Exempel: Nabla, Atomic Age. Lämna tomt för temastandarden.",
   "VOLUME_FONT_NAME": "Volymetikett – Google teckensnitt",
-  "VOLUME_FONT_NAME_DESC": "Anpassat Google-teckensnitt från https://fonts.google.com. Exempel: Nabla, Atomic Age. Lämna tomt för temastandarden."
+  "VOLUME_FONT_NAME_DESC": "Anpassat Google-teckensnitt från https://fonts.google.com. Exempel: Nabla, Atomic Age. Lämna tomt för temastandarden.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

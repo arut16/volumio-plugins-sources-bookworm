@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Panel priebehu – Google písmo",
   "PROGRESS_FONT_NAME_DESC": "Vlastné Google písmo z https://fonts.google.com. Príklad: Nabla, Atomic Age. Nechajte prázdne pre predvolený motív.",
   "VOLUME_FONT_NAME": "Popis hlasitosti – Google písmo",
-  "VOLUME_FONT_NAME_DESC": "Vlastné Google písmo z https://fonts.google.com. Príklad: Nabla, Atomic Age. Nechajte prázdne pre predvolený motív."
+  "VOLUME_FONT_NAME_DESC": "Vlastné Google písmo z https://fonts.google.com. Príklad: Nabla, Atomic Age. Nechajte prázdne pre predvolený motív.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

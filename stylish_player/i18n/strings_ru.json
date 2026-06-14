@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Прогресс-бар – шрифт Google",
   "PROGRESS_FONT_NAME_DESC": "Пользовательский шрифт Google с https://fonts.google.com. Пример: Nabla, Atomic Age. Оставьте пустым для темы по умолчанию.",
   "VOLUME_FONT_NAME": "Метка громкости – шрифт Google",
-  "VOLUME_FONT_NAME_DESC": "Пользовательский шрифт Google с https://fonts.google.com. Пример: Nabla, Atomic Age. Оставьте пустым для темы по умолчанию."
+  "VOLUME_FONT_NAME_DESC": "Пользовательский шрифт Google с https://fonts.google.com. Пример: Nabla, Atomic Age. Оставьте пустым для темы по умолчанию.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

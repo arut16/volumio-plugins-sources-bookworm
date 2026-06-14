@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Pasek postępu – czcionka Google",
   "PROGRESS_FONT_NAME_DESC": "Niestandardowa czcionka Google z https://fonts.google.com. Przykład: Nabla, Atomic Age. Pozostaw puste dla domyślnego motywu.",
   "VOLUME_FONT_NAME": "Etykieta głośności – czcionka Google",
-  "VOLUME_FONT_NAME_DESC": "Niestandardowa czcionka Google z https://fonts.google.com. Przykład: Nabla, Atomic Age. Pozostaw puste dla domyślnego motywu."
+  "VOLUME_FONT_NAME_DESC": "Niestandardowa czcionka Google z https://fonts.google.com. Przykład: Nabla, Atomic Age. Pozostaw puste dla domyślnego motywu.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Fortschrittsbalken – Google-Schriftname",
   "PROGRESS_FONT_NAME_DESC": "Eigene Google-Schrift von https://fonts.google.com. Beispiel: Nabla, Atomic Age. Leer lassen für den Theme-Standard.",
   "VOLUME_FONT_NAME": "Lautstärkebeschriftung – Google-Schriftname",
-  "VOLUME_FONT_NAME_DESC": "Eigene Google-Schrift von https://fonts.google.com. Beispiel: Nabla, Atomic Age. Leer lassen für den Theme-Standard."
+  "VOLUME_FONT_NAME_DESC": "Eigene Google-Schrift von https://fonts.google.com. Beispiel: Nabla, Atomic Age. Leer lassen für den Theme-Standard.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

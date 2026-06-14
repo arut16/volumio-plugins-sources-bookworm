@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Barra di avanzamento – font Google",
   "PROGRESS_FONT_NAME_DESC": "Font Google personalizzato da https://fonts.google.com. Esempio: Nabla, Atomic Age. Lasciare vuoto per il tema predefinito.",
   "VOLUME_FONT_NAME": "Etichetta volume – font Google",
-  "VOLUME_FONT_NAME_DESC": "Font Google personalizzato da https://fonts.google.com. Esempio: Nabla, Atomic Age. Lasciare vuoto per il tema predefinito."
+  "VOLUME_FONT_NAME_DESC": "Font Google personalizzato da https://fonts.google.com. Esempio: Nabla, Atomic Age. Lasciare vuoto per il tema predefinito.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

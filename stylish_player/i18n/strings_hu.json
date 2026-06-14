@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Lejátszási csúszka – Google betűtípus",
   "PROGRESS_FONT_NAME_DESC": "Egyéni Google betűtípus: https://fonts.google.com. Példa: Nabla, Atomic Age. Hagyja üresen a téma alapértelmezettjéhez.",
   "VOLUME_FONT_NAME": "Hangerőcímke – Google betűtípus",
-  "VOLUME_FONT_NAME_DESC": "Egyéni Google betűtípus: https://fonts.google.com. Példa: Nabla, Atomic Age. Hagyja üresen a téma alapértelmezettjéhez."
+  "VOLUME_FONT_NAME_DESC": "Egyéni Google betűtípus: https://fonts.google.com. Példa: Nabla, Atomic Age. Hagyja üresen a téma alapértelmezettjéhez.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

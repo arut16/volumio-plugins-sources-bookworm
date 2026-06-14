@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Barre de progression – police Google",
   "PROGRESS_FONT_NAME_DESC": "Police Google personnalisée depuis https://fonts.google.com. Exemple : Nabla, Atomic Age. Laisser vide pour le thème par défaut.",
   "VOLUME_FONT_NAME": "Étiquette du volume – police Google",
-  "VOLUME_FONT_NAME_DESC": "Police Google personnalisée depuis https://fonts.google.com. Exemple : Nabla, Atomic Age. Laisser vide pour le thème par défaut."
+  "VOLUME_FONT_NAME_DESC": "Police Google personnalisée depuis https://fonts.google.com. Exemple : Nabla, Atomic Age. Laisser vide pour le thème par défaut.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

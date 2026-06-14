@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "แถบความคืบหน้า – ฟอนต์ Google",
   "PROGRESS_FONT_NAME_DESC": "รับฟอนต์ Google จาก https://fonts.google.com ตัวอย่าง: Nabla, Atomic Age ปล่อยว่างเพื่อใช้ค่าเริ่มต้นของธีม",
   "VOLUME_FONT_NAME": "ป้ายระดับเสียง – ฟอนต์ Google",
-  "VOLUME_FONT_NAME_DESC": "รับฟอนต์ Google จาก https://fonts.google.com ตัวอย่าง: Nabla, Atomic Age ปล่อยว่างเพื่อใช้ค่าเริ่มต้นของธีม"
+  "VOLUME_FONT_NAME_DESC": "รับฟอนต์ Google จาก https://fonts.google.com ตัวอย่าง: Nabla, Atomic Age ปล่อยว่างเพื่อใช้ค่าเริ่มต้นของธีม",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

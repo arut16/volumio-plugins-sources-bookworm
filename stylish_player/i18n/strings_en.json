@@ -184,5 +184,7 @@
   "PROGRESS_FONT": "Progress Bar",
   "VOLUME_FONT": "Volume Label",
   "PLAYER_BUTTON_FONT": "Player Button Size",
-  "SECONDARY_ROW_FONT": "Secondary Controls Icon Size"
+  "SECONDARY_ROW_FONT": "Secondary Controls Icon Size",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

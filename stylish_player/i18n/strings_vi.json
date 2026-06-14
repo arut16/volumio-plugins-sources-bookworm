@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "Thanh tiến trình – phông chữ Google",
   "PROGRESS_FONT_NAME_DESC": "Phông chữ Google từ https://fonts.google.com. Ví dụ: Nabla, Atomic Age. Để trống để dùng mặc định của chủ đề.",
   "VOLUME_FONT_NAME": "Nhãn âm lượng – phông chữ Google",
-  "VOLUME_FONT_NAME_DESC": "Phông chữ Google từ https://fonts.google.com. Ví dụ: Nabla, Atomic Age. Để trống để dùng mặc định của chủ đề."
+  "VOLUME_FONT_NAME_DESC": "Phông chữ Google từ https://fonts.google.com. Ví dụ: Nabla, Atomic Age. Để trống để dùng mặc định của chủ đề.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }

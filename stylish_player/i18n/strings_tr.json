@@ -185,5 +185,7 @@
   "PROGRESS_FONT_NAME": "İlerleme Çubuğu – Google Yazı Tipi",
   "PROGRESS_FONT_NAME_DESC": "https://fonts.google.com adresinden Google yazı tipi alın. Örnek: Nabla, Atomic Age. Tema varsayılanı için boş bırakın.",
   "VOLUME_FONT_NAME": "Ses Düzeyi Etiketi – Google Yazı Tipi",
-  "VOLUME_FONT_NAME_DESC": "https://fonts.google.com adresinden Google yazı tipi alın. Örnek: Nabla, Atomic Age. Tema varsayılanı için boş bırakın."
+  "VOLUME_FONT_NAME_DESC": "https://fonts.google.com adresinden Google yazı tipi alın. Örnek: Nabla, Atomic Age. Tema varsayılanı için boş bırakın.",
+  "ALBUM_ART_ANIMATED": "Animated Album Art",
+  "ALBUM_ART_ANIMATED_DESC": "Enable subtle animation effects for album art when Player Type is set to Album Art."
 }
