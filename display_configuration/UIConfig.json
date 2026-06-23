@@ -242,216 +242,172 @@
           },
           "options": [
             {
-              "value": "1.00",
-              "label": "Native (0 adjustment)"
+              "value": "0",
+              "label": "Off"
             },
             {
-              "value": "0.95",
-              "label": "5 pixels"
+              "value": "2",
+              "label": "2%"
             },
             {
-              "value": "0.90",
-              "label": "10 pixels"
+              "value": "4",
+              "label": "4%"
             },
             {
-              "value": "0.85",
-              "label": "15 pixels"
+              "value": "6",
+              "label": "6%"
             },
             {
-              "value": "0.80",
-              "label": "20 pixels"
+              "value": "8",
+              "label": "8%"
             },
             {
-              "value": "0.75",
-              "label": "25 pixels"
-            },
-            {
-              "value": "0.70",
-              "label": "30 pixels"
-            },
-            {
-              "value": "0.65",
-              "label": "35 pixels"
-            },
-            {
-              "value": "0.60",
-              "label": "40 pixels"
-            },
-            {
-              "value": "0.55",
-              "label": "45 pixels"
-            },
-            {
-              "value": "0.50",
-              "label": "50 pixels"
-            },
-            {
-              "value": "0.45",
-              "label": "55 pixels"
-            },
-            {
-              "value": "0.40",
-              "label": "60 pixels"
-            },
-            {
-              "value": "0.35",
-              "label": "65 pixels"
-            },
-            {
-              "value": "0.30",
-              "label": "70 pixels"
-            },
-            {
-              "value": "0.25",
-              "label": "75 pixels"
-            },
-            {
-              "value": "0.20",
-              "label": "80 pixels"
+              "value": "10",
+              "label": "10%"
             }
           ],
           "visibleIf": {
             "field": "show_advanced",
             "value": true
           }
-           }
+        }
+      ]
+    },
+    {
+      "id": "screensaver",
+      "element": "section",
+      "label": "TRANSLATE.SCREENSAVER_SECTION",
+      "onSave": {
+        "type": "controller",
+        "endpoint": "user_interface/display_configuration",
+        "method": "saveScreensaver"
+      },
+      "saveButton": {
+        "label": "TRANSLATE.APPLY",
+        "data": [
+          "hidecursor",
+          "screensavertype",
+          "timeout",
+          "noifplay"
+        ]
+      },
+      "content": [
+        {
+          "id": "hidecursor",
+          "element": "switch",
+          "label": "TRANSLATE.MOUSE_C",
+          "doc": "TRANSLATE.MOUSE_C_DOC",
+          "value": false
+        },
+        {
+          "id": "screensavertype",
+          "element": "select",
+          "doc": "TRANSLATE.XSTYPE_DOC",
+          "label": "TRANSLATE.XSTYPE",
+          "value": {
+            "value": "dpms",
+            "label": "Turn the screen off"
+          },
+          "options": [
+            {
+              "value": "dpms",
+              "label": "TRANSLATE.DPMS"
+            },
+            {
+              "value": "xscreensaver",
+              "label": "TRANSLATE.XSCREENSAVER"
+            }
           ]
         },
         {
-          "id": "screensaver",
-          "element": "section",
-          "label": "TRANSLATE.SCREENSAVER_SECTION",
-          "onSave": {
-            "type": "controller",
+          "id": "xscreensettings",
+          "element": "button",
+          "label": "TRANSLATE.XSCREEN_SAVER_SETTING",
+          "onClick": {
+            "type": "plugin",
             "endpoint": "user_interface/display_configuration",
-            "method": "saveScreensaver"
+            "method": "xscreensettings"
           },
-          "saveButton": {
-            "label": "TRANSLATE.APPLY",
-            "data": [
-              "hidecursor",
-              "screensavertype",
-              "timeout",
-              "noifplay"
-            ]
-          },
-          "content": [
-            {
-              "id": "hidecursor",
-              "element": "switch",
-              "label": "TRANSLATE.MOUSE_C",
-              "doc": "TRANSLATE.MOUSE_C_DOC",
-              "value": false
-            },
-            {
-              "id": "screensavertype",
-              "element": "select",
-              "doc": "TRANSLATE.XSTYPE_DOC",
-              "label": "TRANSLATE.XSTYPE",
-              "value": {
-                "value": "dpms",
-                "label": "Turn the screen off"
-              },
-              "options": [
-                {
-                  "value": "dpms",
-                  "label": "TRANSLATE.DPMS"
-                },
-                {
-                  "value": "xscreensaver",
-                  "label": "TRANSLATE.XSCREENSAVER"
-                }
-              ]
-            },
-            {
-              "id": "xscreensettings",
-              "element": "button",
-              "label": "TRANSLATE.XSCREEN_SAVER_SETTING",
-              "onClick": {
-                "type": "plugin",
-                "endpoint": "user_interface/display_configuration",
-                "method": "xscreensettings"
-              },
-              "visibleIf": {
-                "field": "screensavertype",
-                "value": "xscreensaver"
-              }
-            },
-            {
-              "id": "timeout",
-              "element": "input",
-              "type": "number",
-              "doc": "TRANSLATE.SCREENSAVER_DOC",
-              "label": "TRANSLATE.SCREENSAVER",
-              "attributes": [
-                {
-                  "placeholder": 120
-                },
-                {
-                  "maxlength": 4
-                },
-                {
-                  "min": 0
-                },
-                {
-                  "max": 3600
-                }
-              ],
-              "value": 120,
-              "visibleIf": {
-                "field": "screensavertype",
-                "value": "dpms"
-              }
-            },
-            {
-              "id": "noifplay",
-              "element": "switch",
-              "label": "TRANSLATE.NO_SS_IF_PLAY",
-              "doc": "TRANSLATE.NO_SS_IF_PLAY_DOC",
-              "value": true
-            }
-          ]
+          "visibleIf": {
+            "field": "screensavertype",
+            "value": "xscreensaver"
+          }
         },
         {
-          "id": "debug",
-          "element": "section",
-          "label": "TRANSLATE.DEBUG_SECTION",
-          "content": [
+          "id": "timeout",
+          "element": "input",
+          "type": "number",
+          "doc": "TRANSLATE.SCREENSAVER_DOC",
+          "label": "TRANSLATE.SCREENSAVER",
+          "attributes": [
             {
-              "id": "debug_logging",
-              "element": "switch",
-              "label": "TRANSLATE.DEBUG_LOGGING",
-              "doc": "TRANSLATE.DEBUG_LOGGING_DOC",
-              "value": true,
-              "onClick": {
-                "type": "plugin",
-                "endpoint": "user_interface/display_configuration",
-                "method": "toggleDebugLogging"
-              }
+              "placeholder": 120
             },
             {
-              "id": "restart_kiosk",
-              "element": "button",
-              "label": "TRANSLATE.RESTART_DISPLAY",
-              "doc": "TRANSLATE.RESTART_DISPLAY_DOC",
-              "onClick": {
-                "type": "plugin",
-                "endpoint": "user_interface/display_configuration",
-                "method": "restartKiosk"
-              }
+              "maxlength": 4
             },
             {
-              "id": "generate_diagnostics",
-              "element": "button",
-              "label": "TRANSLATE.GENERATE_DIAG",
-              "doc": "TRANSLATE.GENERATE_DIAG_DOC",
-              "onClick": {
-                "type": "plugin",
-                "endpoint": "user_interface/display_configuration",
-                "method": "generateDiagnostics"
-              }
+              "min": 0
+            },
+            {
+              "max": 3600
             }
-          ]
+          ],
+          "value": 120,
+          "visibleIf": {
+            "field": "screensavertype",
+            "value": "dpms"
+          }
+        },
+        {
+          "id": "noifplay",
+          "element": "switch",
+          "label": "TRANSLATE.NO_SS_IF_PLAY",
+          "doc": "TRANSLATE.NO_SS_IF_PLAY_DOC",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "debug",
+      "element": "section",
+      "label": "TRANSLATE.DEBUG_SECTION",
+      "content": [
+        {
+          "id": "debug_logging",
+          "element": "switch",
+          "label": "TRANSLATE.DEBUG_LOGGING",
+          "doc": "TRANSLATE.DEBUG_LOGGING_DOC",
+          "value": true,
+          "onClick": {
+            "type": "plugin",
+            "endpoint": "user_interface/display_configuration",
+            "method": "toggleDebugLogging"
+          }
+        },
+        {
+          "id": "restart_kiosk",
+          "element": "button",
+          "label": "TRANSLATE.RESTART_DISPLAY",
+          "doc": "TRANSLATE.RESTART_DISPLAY_DOC",
+          "onClick": {
+            "type": "plugin",
+            "endpoint": "user_interface/display_configuration",
+            "method": "restartKiosk"
+          }
+        },
+        {
+          "id": "generate_diagnostics",
+          "element": "button",
+          "label": "TRANSLATE.GENERATE_DIAG",
+          "doc": "TRANSLATE.GENERATE_DIAG_DOC",
+          "onClick": {
+            "type": "plugin",
+            "endpoint": "user_interface/display_configuration",
+            "method": "generateDiagnostics"
+          }
         }
       ]
     }
+  ]
+}

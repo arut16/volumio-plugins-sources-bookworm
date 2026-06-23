@@ -1129,7 +1129,7 @@ display_configuration.prototype.saveCalibration = function (data) {
    });
 
    // Save overscan
-let overscanValue= data['overscan'] ;
+   let overscanValue = data['overscan'];
    self.config.set('overscan', overscanValue);
 
    self.commandRouter.pushToastMessage("success", "Advanced Settings", "Settings applied! Console and Boot Logo changes take effect on reboot.");
@@ -1277,7 +1277,7 @@ display_configuration.prototype.applyscreensettings = async function () {
    try {
 
       await this.applyRotation();
-            this.applyOverscan();
+      this.applyOverscan();
 
       await this.applyTouchCorrection();
       await this.applyPointerCorrection();
@@ -1474,7 +1474,7 @@ display_configuration.prototype.getCurrentResolution = function (screen) {
                isTargetScreen = true;
                continue;
             }
-            
+
             // If we hit another connected screen name, break out of our target block
             if (isTargetScreen && /^[A-Za-z0-9-]+ connected/.test(line)) {
                break;
@@ -1504,7 +1504,7 @@ display_configuration.prototype.getCurrentResolution = function (screen) {
             const backupRegex = new RegExp(`${screen}\\s+connected\\s+(?:primary\\s+)?(\\d+x\\d+)`);
             const backupMatch = stdout.match(backupRegex);
             const finalRes = (backupMatch && backupMatch[1]) ? backupMatch[1] : '1920x1080';
-            
+
             self.logger.warn(logPrefix + ` Could not parse physical mode for ${screen}. Using fallback: ${finalRes}`);
             resolve(finalRes);
          }
@@ -1517,11 +1517,12 @@ display_configuration.prototype.applyOverscan = async function () {
 
    const overscanConfig = self.config.get('overscan');
 
-   const overscanValue = parseFloat(
+   const overscanPercent = parseInt(
       (overscanConfig && typeof overscanConfig === 'object')
          ? overscanConfig.value
-         : overscanConfig || "1.00"
-   ) || 1.0;
+         : overscanConfig || "0",
+      10
+   ) || 0;
 
    const display = self.getDisplaynumber();
    const screen = await self.detectConnectedScreen();
@@ -1534,10 +1535,10 @@ display_configuration.prototype.applyOverscan = async function () {
    const resolution = await self.getCurrentResolution(screen);
    const [width, height] = resolution.split('x').map(Number);
 
-   self.logger.info(
-      logPrefix +
-      ` Applying TV-safe overscan=${overscanValue} on ${screen}`
-   );
+self.logger.info(
+   logPrefix +
+   ` Applying TV-safe overscan compensation=${overscanPercent}% on ${screen} (${resolution})`
+);
 
    // -------------------------------------------------------
    // 1. DETECT HARDWARE UNDERSCAN SUPPORT (BEST CASE)
@@ -1565,17 +1566,16 @@ display_configuration.prototype.applyOverscan = async function () {
       // Convert overscan value to border percentage
       // overscan 0.9 → ~5% border
       // overscan 1.0 → 0 border
-      const border =
-         overscanValue >= 1.0
-            ? 0
-            : Math.round((1 - overscanValue) * 50); // tuned for TVs
-
+      const hBorder = Math.round(width * overscanPercent / 200);
+      const vBorder = Math.round(height * overscanPercent / 200);
       const cmd =
-         `DISPLAY=${display} xrandr ` +
-         `--output ${screen} ` +
-         `--set underscan on ` +
-         `--set "underscan hborder" ${border} ` +
-         `--set "underscan vborder" ${border}`;
+         overscanPercent === 0
+            ? `DISPLAY=${display} xrandr --output ${screen} --set underscan off`
+            : `DISPLAY=${display} xrandr ` +
+            `--output ${screen} ` +
+            `--set underscan on ` +
+            `--set "underscan hborder" ${hBorder} ` +
+            `--set "underscan vborder" ${vBorder}`;
 
       self.logger.info(logPrefix + ` CMD: ${cmd}`);
 
@@ -1598,20 +1598,13 @@ display_configuration.prototype.applyOverscan = async function () {
    function softwareFallback() {
       self.logger.info(logPrefix + " Using X11 scale+panning fallback");
 
-      /*
-       * IMPORTANT RULE:
-       * DO NOT invert user value.
-       * UI already defines:
-       * 1.10 = zoom in
-       * 0.90 = zoom out
-       */
-      const scale = 1 / overscanValue;
+      const scale = 1 + (overscanPercent / 100);
 
       const cmd =
          `DISPLAY=${display} xrandr ` +
          `--output ${screen} ` +
          `--mode ${resolution} ` +
-         `--scale ${scale}x${scale} ` +
+         `--scale ${scale.toFixed(4)}x${scale.toFixed(4)} ` +
          `--panning ${width}x${height}`;
 
       self.logger.info(logPrefix + ` CMD: ${cmd}`);
@@ -1625,139 +1618,9 @@ display_configuration.prototype.applyOverscan = async function () {
          }
       });
    }
-
    // run fallback if no hardware support
    softwareFallback();
 };
-/*
-display_configuration.prototype.applyOverscan = async function () {
-   const self = this;
-   
-   // Safely read values
-   const overscanConfig = self.config.get('overscan');
-   const overscanValueStr = (overscanConfig && typeof overscanConfig === 'object') ? overscanConfig.value : (overscanConfig || "1.00");
-   const overscanLabel = (overscanConfig && typeof overscanConfig === 'object') ? overscanConfig.label : "0%";
-   
-   const overscanValue = parseFloat(overscanValueStr) || 1.00;
-
-   self.logger.info(logPrefix + ` Applying overscan: ${overscanValue} (${overscanLabel})`);
-   const display = self.getDisplaynumber();
-   const screen = await self.detectConnectedScreen();
-
-   const resolution = await self.getCurrentResolution(screen); // E.g., Always returns the physical "1920x1080" now
-   self.logger.info(logPrefix + ` Current resolution for ${screen}: ${resolution}`);
-
-   const [width, height] = resolution.split('x').map(Number);
-
-   let cmd;
-   if (overscanValue !== 1.00) {
-      // The Golden Transformation Formula for centering in xrandr:
-      // Offset = (Dimension * (1 - Scale)) / (2 * Scale)
-      const offsetX = (width * (1 - overscanValue)) / (2 * overscanValue);
-      const offsetY = (height * (1 - overscanValue)) / (2 * overscanValue);
-
-      cmd = `DISPLAY=${display} xrandr --output ${screen} --mode ${resolution} --transform ${overscanValue},0,${offsetX},0,${overscanValue},${offsetY},0,0,1`;
-   } else {
-      // Clean reset back to native layout
-      cmd = `DISPLAY=${display} xrandr --output ${screen} --mode ${resolution} --transform none`;
-   }
-
-   self.logger.info(logPrefix + ` Executing command: ${cmd}`);
-   exec(cmd, (err, stdout, stderr) => {
-      if (err) {
-         self.logger.error(logPrefix + ` xrandr transform failed: ${stderr || err.message}`);
-      } else {
-         self.debugLog(` Overscan applied centered: ${overscanValue}`);
-      }
-   });
-};
-/*
-// Apply overscan settings
-display_configuration.prototype.applyOverscan = async function () {
-   const self = this;
-   const overscanValue = self.config.get('overscan').value; // e.g., "1.05"
-   const overscanLabel = self.config.get('overscan').label; // e.g., "5%"
-   self.logger.info(logPrefix + ` Applying overscan: ${overscanValue} (${overscanLabel})`);
-   const display = self.getDisplaynumber();
-   const screen = await self.detectConnectedScreen();
-
-const resolution = await self.getCurrentResolution(screen); // e.g., "1920x1080"
-   self.logger.info(logPrefix + ` Current resolution for ${screen}: ${resolution}`);
-
-   // Split resolution into width and height integers
-   const [width, height] = resolution.split('x').map(Number);
-
-   let cmd;
-   if (overscanValue !== 1.00) {
-      // Calculate the offset required to center the image
-      // Formula: (CanvasSize - (CanvasSize * Scale)) / 2
-      const offsetX = (width - (width * overscanValue)) / 2;
-      const offsetY = (height - (height * overscanValue)) / 2;
-
-      // Using an explicit mathematical transformation matrix keeps things pixel-perfect and centered
-      // Matrix: [ scaleX, 0, offsetX, 0, scaleY, offsetY, 0, 0, 1 ]
-      cmd = `DISPLAY=${display} xrandr --output ${screen} --mode ${resolution} --transform ${overscanValue},0,${offsetX},0,${overscanValue},${offsetY},0,0,1`;
-   } else {
-      // Clean reset
-      cmd = `DISPLAY=${display} xrandr --output ${screen} --mode ${resolution} --transform none`;
-   }
-
-   self.logger.info(logPrefix + ` Executing command: ${cmd}`);
-   exec(cmd, (err, stdout, stderr) => {
-      if (err) {
-         self.logger.error(logPrefix + ` xrandr transform failed: ${stderr || err.message}`);
-      } else {
-         self.debugLog(` Overscan applied centered: ${overscanValue}`);
-      }
-   });
-};
-   /*
-   // We also need the screen's current native resolution (e.g., "1920x1080") to pair with panning
-   // Assuming you have a helper like self.getScreenResolution() or similar. 
-   // If not, you can parse it from xrandr or hardcode if it's a fixed kiosk.
-   const resolution = await self.getCurrentResolution(screen);
-   self.logger.info(logPrefix + ` Current resolution for ${screen}: ${resolution}`);
-   // Pairing --scale with --panning forces the viewport to center the scaled canvas
-   const cmd = `DISPLAY=${display} xrandr --output ${screen} --mode ${resolution} --scale ${overscanValue} --panning ${resolution}`;
-  //    const cmd = `DISPLAY=${display} xrandr --output ${screen} --mode ${resolution} --scale ${overscanValue}`;
-
-self.logger.info(logPrefix + ` Executing command: ${cmd}`);
-   exec(cmd, (err, stdout, stderr) => {
-      if (err) {
-         self.logger.error(logPrefix + ` xrandr scale failed: ${stderr || err.message}`);
-      } else {
-         self.debugLog(` Overscan applied centered: ${overscanValue}`);
-      }
-   });
-
-};
-/*
-display_configuration.prototype.applyOverscan = async function () {
-   const self = this;
-   const overscanValue = self.config.get('overscan');
- 
-
-   const display = self.getDisplaynumber();
-   const screen = await self.detectConnectedScreen();
-   if (overscanValue) {
-      exec(`DISPLAY=${display} xrandr --output ${screen} --scale ${overscanValue}`, (err, stdout, stderr) => {
-         if (err) {
-            self.logger.error(logPrefix + ` xrandr --output ${screen} --failed: ${stderr || err.message}`);
-         } else {
-            self.debugLog(` Overscan applied: ${overscanValue}`);
-         }
-      });
-   } else {
-      exec(`DISPLAY=${display} xrandr --output ${screen} --scale 1x1`, (err, stdout, stderr) => {
-         if (err) {
-            self.logger.error(logPrefix + ` xrandr --output ${screen} --set underscan off: ${stderr || err.message}`);
-         } else {
-            self.debugLog(` Overscan applied: ${overscanValue || 'default (1x1)'}`);
-         }
-      });
-   }
-};
-*/
 // Apply fbcon rotation for console display
 display_configuration.prototype.applyFbconRotation = function (fbconValue) {
    const self = this;
