@@ -183,9 +183,9 @@ PirateAudioScreensaver.prototype.writeEnvironmentFile = function () {
   return this.writeRootFile('/etc/volumio-screensaver.env', content);
 };
 
-PirateAudioScreensaver.prototype.writeRootFile = function (filePath, content) {
+PirateAudioScreensaver.prototype.writeRootFile = function (path, content) {
   var escaped = content.replace(/'/g, "'\\''");
-  return this.runCommand("printf '%s' '" + escaped + "' | sudo tee " + filePath + ' >/dev/null');
+  return this.runCommand("printf '%s' '" + escaped + "' | sudo tee " + path + ' >/dev/null');
 };
 
 PirateAudioScreensaver.prototype.runCommand = function (command) {

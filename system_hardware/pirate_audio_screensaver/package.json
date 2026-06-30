@@ -23,11 +23,11 @@
     "changelog": "Initial release with Volumio UI settings, persistent idle delay, display rotation and systemd service management."
   },
   "engines": {
-    "node": ">=8",
-    "volumio": ">=3"
+    "node": ">=20",
+    "volumio": ">=4"
   },
   "dependencies": {
-    "kew": "^0.7.0",
-    "v-conf": "^1.4.0"
+    "kew": "*",
+    "v-conf": "*"
   }
 }

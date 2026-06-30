@@ -2,13 +2,7 @@
 
 Volumio plugin for displaying an idle clock screensaver on Pimoroni Pirate Audio ST7789 displays.
 
-The Python screensaver engine lives in this repository:
-
-```text
-https://github.com/arut16/Ecran-Veille-Volumio
-```
-
-This directory contains the Volumio plugin wrapper intended to be published under the `system_hardware` plugin category for Bookworm-based Volumio versions.
+The Python screensaver engine lives in this repository. This directory contains the Volumio plugin wrapper intended to be published under the `system_hardware` plugin category.
 
 ## Features
 
@@ -71,8 +65,22 @@ Useful checks:
 ```bash
 cat /etc/volumio-screensaver.env
 cat /data/configuration/system_hardware/pirate_audio_screensaver/settings.json
-systemctl status volumio-screensaver
-journalctl -u volumio-screensaver -n 100 --no-pager
+sudo systemctl status volumio-screensaver
+sudo journalctl -u volumio-screensaver -n 100 --no-pager
+```
+
+## Publication workflow
+
+For official publication, copy this folder into a fork of `volumio/volumio-plugins-sources` at:
+
+```text
+system_hardware/pirate_audio_screensaver
+```
+
+Commit and push the fork, then run from the plugin directory on a Volumio device:
+
+```bash
+volumio plugin submit
 ```
 
 ## Notes
